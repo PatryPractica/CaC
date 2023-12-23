@@ -354,4 +354,125 @@
     color: black;
   }
   
+   /* Tickets */
    
+   .tickets .container-tickets {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tickets-category {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1rem;
+}
+
+.ticket-category {
+    width: 30%;
+    min-width: 180px;
+    text-align: center;
+    padding: 0.5rem;
+    margin: 1rem 1rem;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.ticket-category:hover {
+    transform: scale(0.97);
+}
+
+.ticket-category h2 {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.ticket-category h3 {
+    font-size: 0.5rem;
+    font-weight: 200;
+    text-align: center;
+}
+
+.ticket-category h5 {
+    font-size: 1rem;
+    color: rgb(135, 130, 130);
+    text-align: center;
+}
+
+.ticket-category h6 {
+    font-size: 0.5rem;
+    color: rgb(198, 197, 197);
+    text-align: center;
+}
+
+.estudiante {
+    border: 2px solid #7999f1;
+}
+
+.trainee {
+    border: 2px solid rgb(95, 202, 234);
+}
+
+.junior {
+    border: 2px solid rgb(240, 212, 158);
+}
+
+.container-tickets .tickets-text {
+    text-align: center;
+}
+
+.tickets-form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tickets-form input,
+.tickets-form select {
+    width: 49%;
+    margin: 0.5rem 0;
+    border-radius: 3px;
+    border: 1px solid rgb(74, 73, 73);
+    padding: 5px;
+}
+
+.tickets-form .ticketsEmail {
+    width: 100%;
+}
+
+.tickets-form .labelTicketsQuantity,
+.tickets-form .labelTicketsCategory {
+    width: 49%;
+    margin: 0.5rem 0;
+}
+
+.tickets-form .ticketsOutput {
+    width: 100%;
+    background-color: rgb(155, 200, 222);
+    border-radius: 3px;
+    border: rgb(206, 200, 200);
+    padding: 10px;
+    color: rgb(59, 59, 59);
+}
+
+.ticketsOutput .ticketsValue {
+    float: left;
+}
+
+.ticketsOutput .ticketsBuy {
+    float: right;
+    cursor: pointer;
+}
+
+.tickets-form .btnTickets {
+    width: 49%;
+    background-color: rgba(121, 233, 61, 0.8);
+    color: white;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+}
+

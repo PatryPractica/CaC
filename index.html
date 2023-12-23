@@ -42,7 +42,7 @@
                     tenemos para ti. Te esperamos!</p>
                 <div class="buttonarea">
                     <a class="btn btn-transparent" href="#orador">Quiero ser orador</a>
-                    <a class="btn btn-solid" href="#tickets">Comprar tickets</a>
+                    <a class="btn btn-solid" href="#ticket">Comprar ticket</a>
                 </div>
             </div>
         </div>
@@ -130,21 +130,140 @@
   </div>
 </section>
 
+
+  <!--compra de tickets-->
+  <div id="tickets" class="tickets">
+    <div class="container-tickets">
+        <div class="tickets-category">
+            <div class="estudiante">
+                <h3>Estudiante</h3>
+                <h5>Tiene un descuento</h5>
+                <h2>80%</h2>
+                <h6>* presentar documentación</h6>
+            </div>
+            <div class="trainee">
+                <h3>Trainee</h3>
+                <h5>Tiene un descuento</h5>
+                <h2>50%</h2>
+                <h6>* presentar documentación</h6>
+            </div>
+            <div class="junior">
+                <h3>Junior</h3>
+                <h5>Tiene un descuento</h5>
+                <h2>15%</h2>
+                <h6>* presentar documentación</h6>
+            </div>
+        </div>
+        <div class="tickets-text">
+            <h6>VENTA</h6>
+            <h1>VALOR DE TICKET $200</h1>
+        </div>
+
+
+        <form class="ticketsForm" action="">
+            <div class="tickets-form">
+                <input type="text" class="ticketsFirstName" name="Nombre" placeholder="Nombre">
+                <input type="text" class="ticketsLastName" name="Apellido" placeholder="Apellido">
+                <input type="email" class="ticketsEmail" name="Email" placeholder="E-mail">
+                <div class="labelTicketsQuantity">
+                    <label for="Cantidad">Cantidad</label>
+                    <input id="ticketsQuantity" type="text" class="ticketsQuantity" name="Cantidad"
+                        placeholder="Cantidad">
+                </div>
+                <div class="labelTicketsCategory">
+                    <label for="Categoria">Categoria</label>
+                    <select name="Categoria" class="ticketsCategory">
+                        <option value="Estudiante">Estudiante</option>
+                        <option value="Trainee">Trainee</option>
+                        <option value="Junior">Junior</option>
+                    </select>
+                </div>
+                <!-- <output class="ticketsOutput"><span class="ticketsValue">Total a pagar: </span><span class="ticketsBuy"><i class="fa-solid fa-cart-shopping"></i> Comprar</span></output> -->
+                <output class="ticketsOutput"><span class="ticketsValue">Total a pagar: </span></output>
+                <button id="ticketsBorrar" type="reset" class="btnTickets" name="Borrar">Borrar</button>
+                <button id="ticketsResumen" class="btnTickets" name="Resumen">Resumen</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
 <!--Footer-->
 
 <footer class="footer">
-  <div class="container-footer">
-      <a class="footer-item" href="#">Preguntas frecuentes</a>
-      <a class="footer-item" href="#">Contáctanos</a>
-      <a class="footer-item" href="#">Prensa</a>
-      <a class="footer-item" href="#">Conferencias</a>
-      <a class="footer-item" href="#">Términos y condiciones</a>
-      <a class="footer-item" href="#">Privacidad</a>
-      <a class="footer-item" href="#">Esdudiantes</a>
-  </div>
+    <div class="container-footer">
+        <a class="footer-item" href="#">Preguntas frecuentes</a>
+        <a class="footer-item" href="#">Contáctanos</a>
+        <a class="footer-item" href="#">Prensa</a>
+        <a class="footer-item" href="#">Conferencias</a>
+        <a class="footer-item" href="#">Términos y condiciones</a>
+        <a class="footer-item" href="#">Privacidad</a>
+        <a class="footer-item" href="#">Esdudiantes</a>
+    </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<script>
+    document.getElementById("ticketsBorrar").addEventListener("click", function(event) {
+        event.preventDefault();
+        resetForm();
+    });
+
+    document.getElementById("ticketsResumen").addEventListener("click", function(event) {
+        event.preventDefault();
+        showSummary();
+    });
+
+    function resetForm() {
+        // resetear el formulario
+        document.querySelector(".ticketsForm").reset();
+        document.querySelector(".ticketsOutput span.ticketsValue").textContent = "Total a pagar: ";
+    }
+
+    function showSummary() {
+        // mostrar el resumen
+        const ticketsQuantity = document.querySelector(".ticketsQuantity").value;
+        const ticketsCategory = document.querySelector(".ticketsCategory").value;
+        const totalPayment = calculateTotal(ticketsQuantity, ticketsCategory);
+
+        document.querySelector(".ticketsOutput span.ticketsValue").textContent = `Total a pagar: $${totalPayment}`;
+        createBuyButton();
+    }
+
+    function calculateTotal(quantity, category) {
+        // calcular el total
+        const discounts = {
+            "Estudiante": 0.2,
+            "Trainee": 0.5,
+            "Junior": 0.85
+        };
+
+        const discount = discounts[category] || 1;
+        const unitPrice = 200;
+        const totalPayment = unitPrice * quantity * discount;
+
+        return totalPayment.toFixed(2);
+    }
+
+    function createBuyButton() {
+        // crear el botón de compra
+        const outputNode = document.querySelector(".ticketsOutput");
+        const spanNode = document.createElement("span");
+        spanNode.className = 'ticketsBuy';
+        const textNode = document.createTextNode(" Comprar");
+        spanNode.append(textNode);
+        outputNode.append(spanNode);
+
+        document.querySelector(".ticketsBuy").addEventListener("click", ticketsSubmit);
+    }
+
+    
+</script>
+
 </body>
 
 </html>
